@@ -1,0 +1,29 @@
+syntax = "proto3";
+
+option go_package = "github.com/40471/go-grpc-examples/1-gRPC-report-service/proto";
+
+package report;
+
+service ReportService {
+  rpc GenerateReport (ReportRequest) returns (ReportResponse);
+  
+  rpc StreamReportStatus (StatusRequest) returns (stream StatusResponse);
+}
+
+message ReportRequest {
+  string report_type = 1;
+}
+
+message ReportResponse {
+  string report_id = 1;
+}
+
+message StatusRequest {
+  string report_id = 1;
+}
+
+message StatusResponse {
+  string report_id = 1;
+  string status = 2; 
+  string report_url = 3; 
+}
